@@ -11,8 +11,19 @@ config_version=5
 [application]
 
 config/name="A Game Of Chance"
+run/main_scene="res://UI/screen_interface.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
+boot_splash/bg_color=Color(0.027451, 0.0941176, 0.12549, 1)
+boot_splash/image="res://UI/Sprites/not_jam_logo_transparent.png"
+boot_splash/use_filter=false
 config/icon="res://icon.svg"
+boot_splash/minimum_display_time=250
+
+[gui]
+
+theme/default_font_antialiasing=0
+theme/default_font_hinting=0
+theme/default_font_subpixel_positioning=0
 
 [rendering]
 
