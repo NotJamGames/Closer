@@ -1,0 +1,67 @@
+[gd_scene load_steps=5 format=3 uid="uid://de7yilbhw6eww"]
+
+[ext_resource type="Theme" uid="uid://bo5qipei5ttjp" path="res://UI/Themes/default_theme.theme" id="1_h2pm7"]
+[ext_resource type="Script" path="res://UI/loading_screen.gd" id="2_emq8q"]
+
+[sub_resource type="Animation" id="Animation_qbhqb"]
+resource_name = "loading"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [&"text", "[center]LOADING.[color=#071820]..[/color][/center]"],
+"method": &"set"
+}, {
+"args": [&"text", "[center]LOADING..[color=#071820].[/color][/center]"],
+"method": &"set"
+}, {
+"args": [&"text", "[center]LOADING...[/center]"],
+"method": &"set"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qpsmk"]
+_data = {
+"loading": SubResource("Animation_qbhqb")
+}
+
+[node name="LoadingScreen" type="CenterContainer" node_paths=PackedStringArray("progress_bar")]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_h2pm7")
+script = ExtResource("2_emq8q")
+progress_bar = NodePath("VBoxContainer/ProgressBar")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]Loading.[color=#071820]..[/color][/center]"
+fit_content = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="VBoxContainer/Label"]
+libraries = {
+"": SubResource("AnimationLibrary_qpsmk")
+}
+autoplay = "loading"
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+show_percentage = false
