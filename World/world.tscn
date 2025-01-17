@@ -228,7 +228,10 @@ void fragment() {
 		vec3 emission_tex = texture(texture_emission, base_uv).rgb;
 		EMISSION = (emission.rgb + emission_tex) * emission_energy;
 	}
-}"
+}
+
+
+void light() {}"
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_bp1ju"]
 viewport_path = NodePath("desk_and_monitor/Monitor/Screen/SubViewport")
@@ -247,13 +250,13 @@ shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
 shader_parameter/resolution = Vector2(480, 360)
 shader_parameter/scan_line_amount = 1.0
-shader_parameter/warp_amount = 0.43
+shader_parameter/warp_amount = 5.0
 shader_parameter/noise_amount = 0.045
 shader_parameter/interference_amount = 0.2
 shader_parameter/grille_amount = 0.1
 shader_parameter/grille_size = 1.0
-shader_parameter/vignette_amount = 0.6
-shader_parameter/vignette_intensity = 0.785
+shader_parameter/vignette_amount = 0.864
+shader_parameter/vignette_intensity = 0.159
 shader_parameter/aberation_amount = 0.5
 shader_parameter/roll_line_amount = 0.0
 shader_parameter/roll_speed = 1.0
