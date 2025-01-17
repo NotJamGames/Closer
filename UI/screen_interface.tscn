@@ -1,10 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://dtx0rpqsctv8d"]
+[gd_scene load_steps=4 format=3 uid="uid://dtx0rpqsctv8d"]
 
 [ext_resource type="Script" path="res://UI/screen_interface.gd" id="1_g8wyg"]
+[ext_resource type="FontFile" uid="uid://d356gvukrvbe6" path="res://UI/Fonts/Not Jam Atomic 20.ttf" id="2_62uir"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kufo6"]
+font = ExtResource("2_62uir")
+font_size = 20
 
 [node name="ScreenInterface" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 480.0
-offset_bottom = 270.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_g8wyg")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "TEST"
+label_settings = SubResource("LabelSettings_kufo6")
+horizontal_alignment = 1
+vertical_alignment = 1
