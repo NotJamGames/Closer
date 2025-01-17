@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://3vqlpilc2fl8"]
+
+[ext_resource type="PackedScene" uid="uid://l21ohcak7u52" path="res://Models/desk_and_monitor.glb" id="1_2j35s"]
+[ext_resource type="Script" path="res://World/world.gd" id="1_upb24"]
+[ext_resource type="Script" path="res://VFX/screen_light.gd" id="3_m71ua"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ikkt3"]
+noise_type = 3
+seed = 6
+frequency = 0.015
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2aruo"]
+noise = SubResource("FastNoiseLite_ikkt3")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_twt4i"]
+albedo_texture = SubResource("NoiseTexture2D_2aruo")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ttfdm"]
+material = SubResource("StandardMaterial3D_twt4i")
+size = Vector2(40, 40)
+subdivide_width = 4
+subdivide_depth = 4
+center_offset = Vector3(1, 0, 0)
+
+[sub_resource type="Environment" id="Environment_r6k71"]
+background_mode = 1
+ambient_light_color = Color(1, 1, 1, 1)
+fog_light_color = Color(0.404511, 0.404511, 0.404511, 1)
+fog_light_energy = 2.86
+adjustment_enabled = true
+adjustment_contrast = 0.93
+adjustment_saturation = 2.68
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_upb24")
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_ttfdm")
+
+[node name="desk_and_monitor" parent="." instance=ExtResource("1_2j35s")]
+
+[node name="AmbientLight" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.647588, 0.761991, 0, -0.761991, 0.647588, 0, 2.72648, 1.8731)
+light_color = Color(1, 0.976544, 0.872294, 1)
+light_energy = 3.803
+shadow_enabled = true
+spot_range = 20.855
+spot_angle = 54.7
+spot_angle_attenuation = 3.24901
+
+[node name="ScreenLight" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 1.28451, 0.0572895)
+light_color = Color(0.85, 1, 0.9, 1)
+spot_angle_attenuation = 3.03143
+script = ExtResource("3_m71ua")
+base_energy_range = Array[float]([1.0, 0.64])
+base_energy_frequency = 2.1
+flicker_energy_range = Array[float]([0.0, -0.08])
+flicker_frequency = 0.05
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.989696, 0.143182, 0, -0.143182, 0.989696, 0.0319242, 1.46019, 1.11183)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_r6k71")
