@@ -5,6 +5,8 @@ extends Control
 @export var dialogue_screen : VBoxContainer
 var current_screen : Control
 
+@export var cursor : Sprite2D
+
 
 func _ready() -> void:
 	dialogue_screen.next_screen_requested.connect(set_screen)
@@ -12,7 +14,18 @@ func _ready() -> void:
 	trigger_loading_screen(2.4, "dialogue_screen", ["intro_string_1"])
 
 
+func _input(event : InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		cursor.position = cursor.position + \
+				(event.screen_relative * Global.mouse_sensitivity)
+		cursor.position = cursor.position.clamp\
+				(Vector2.ZERO, 
+				Vector2(480.0, 360.0) - cursor.texture.get_size())
+
+
 func set_screen(new_screen : String, args : Array = []) -> void:
+	# TODO: hide cursor if not main screen
+
 	if current_screen != null:
 		current_screen.visible = false
 

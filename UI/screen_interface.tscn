@@ -1,11 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtx0rpqsctv8d"]
+[gd_scene load_steps=6 format=3 uid="uid://dtx0rpqsctv8d"]
 
 [ext_resource type="Script" path="res://UI/screen_interface.gd" id="1_g8wyg"]
 [ext_resource type="Theme" uid="uid://bo5qipei5ttjp" path="res://UI/Themes/default_theme.theme" id="1_v6ip5"]
 [ext_resource type="PackedScene" uid="uid://de7yilbhw6eww" path="res://UI/loading_screen.tscn" id="3_20qly"]
 [ext_resource type="PackedScene" uid="uid://fwuryqithpw1" path="res://UI/dialogue_screen.tscn" id="4_bocoi"]
+[ext_resource type="Texture2D" uid="uid://rkiubywu1gup" path="res://UI/Sprites/default_cursor.png" id="5_fw073"]
 
-[node name="ScreenInterface" type="Control" node_paths=PackedStringArray("loading_screen", "dialogue_screen")]
+[node name="ScreenInterface" type="Control" node_paths=PackedStringArray("loading_screen", "dialogue_screen", "cursor")]
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
@@ -17,6 +18,7 @@ theme = ExtResource("1_v6ip5")
 script = ExtResource("1_g8wyg")
 loading_screen = NodePath("LoadingScreen")
 dialogue_screen = NodePath("Dialogue")
+cursor = NodePath("Cursor")
 
 [node name="LoadingScreen" parent="." instance=ExtResource("3_20qly")]
 visible = false
@@ -25,3 +27,8 @@ layout_mode = 1
 [node name="Dialogue" parent="." instance=ExtResource("4_bocoi")]
 visible = false
 layout_mode = 1
+
+[node name="Cursor" type="Sprite2D" parent="."]
+position = Vector2(240, 180)
+texture = ExtResource("5_fw073")
+centered = false

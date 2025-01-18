@@ -21,6 +21,7 @@ boot_splash/minimum_display_time=250
 
 [autoload]
 
+Global="*res://global.gd"
 Strings="*res://Strings/strings.gd"
 
 [display]
