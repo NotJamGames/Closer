@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://3vqlpilc2fl8"]
+[gd_scene load_steps=19 format=3 uid="uid://3vqlpilc2fl8"]
 
 [ext_resource type="PackedScene" uid="uid://l21ohcak7u52" path="res://Models/desk_and_monitor.glb" id="1_2j35s"]
 [ext_resource type="Script" path="res://World/world.gd" id="1_upb24"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://VFX/light_variation.gd" id="3_m71ua"]
 [ext_resource type="Shader" path="res://VFX/noise.gdshader" id="4_61ix5"]
 [ext_resource type="Shader" path="res://VFX/vignette.gdshader" id="4_wasif"]
+[ext_resource type="AudioStream" uid="uid://bmaplradmvpc8" path="res://Audio/Ambiences/background_hum.ogg" id="7_o1ah1"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ikkt3"]
 noise_type = 3
@@ -68,6 +69,9 @@ uniform float roll_line_amount :hint_range(0.0, 1.0) = 0.3;
 uniform float roll_speed :hint_range(-8.0, 8.0) = 1.0;
 uniform float scan_line_strength :hint_range(-12.0, -1.0) = -8.0;
 uniform float pixel_strength :hint_range(-4.0, 0.0) = -2.0;
+uniform float saturation = 1.0;
+
+uniform float screen_curve_intensity = 800.0;
 
 uniform bool crt_enabled = true;
 
@@ -179,15 +183,28 @@ float roll_line(vec2 uv){
 	return roll_line * roll_line_amount;
 }
 
+mat3 saturationMatrix()
+{
+	float inv_sat = 1.0 - saturation;
+	vec3 lum = vec3( 0.31, 0.61, 0.08);
+
+	vec3 r = vec3(inv_sat * lum.x) + vec3(saturation, .0, .0);
+	vec3 g = vec3(inv_sat * lum.y) + vec3(.0, saturation, .0);
+	vec3 b = vec3(inv_sat * lum.z) + vec3(.0, .0, saturation);
+
+	return mat3(r, g, b);
+}
+
 void vertex() {
-	UV = UV * uv1_scale.xy + uv1_offset.xy;
+	float z_curve = (.18 * .18 * .18 - abs(VERTEX.z) * abs(VERTEX.z) * abs(VERTEX.z));
+	float x_curve = (.24 * .24 * .24 - abs(VERTEX.x) * abs(VERTEX.x) * abs(VERTEX.x));
+
+	
+	VERTEX.y = VERTEX.y + (z_curve * x_curve * screen_curve_intensity);
 }
 
 void fragment() {
 	vec2 base_uv = UV;
-
-	vec4 albedo_tex = texture(texture_albedo, base_uv);
-	ALBEDO = albedo.rgb * albedo_tex.rgb;
 
 	if (crt_enabled)
 	{
@@ -220,7 +237,7 @@ void fragment() {
 		clr *= 1.0 + scan_line_amount * 0.6 + line * 3.0 + grille_amount * 2.0;
 		if(vignette_amount > 0.0)clr *= vignette(pos);
 		
-		EMISSION.rgb = clr;
+		EMISSION.rgb = clr * saturationMatrix();
 	}
 
 	else
@@ -240,7 +257,7 @@ viewport_path = NodePath("desk_and_monitor/Monitor/Screen/SubViewport")
 resource_local_to_scene = true
 render_priority = 0
 shader = SubResource("Shader_kuaka")
-shader_parameter/albedo = Color(0, 0, 0, 1)
+shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/point_size = 1.0
 shader_parameter/emission = Color(0, 0, 0, 1)
 shader_parameter/emission_energy = 1.0
@@ -249,19 +266,21 @@ shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
 shader_parameter/resolution = Vector2(480, 360)
-shader_parameter/scan_line_amount = 1.0
-shader_parameter/warp_amount = 0.205
-shader_parameter/noise_amount = 0.045
+shader_parameter/scan_line_amount = 0.214
+shader_parameter/warp_amount = 0.45
+shader_parameter/noise_amount = 0.177
 shader_parameter/interference_amount = 0.2
-shader_parameter/grille_amount = 0.1
+shader_parameter/grille_amount = 0.171
 shader_parameter/grille_size = 1.0
-shader_parameter/vignette_amount = 0.864
-shader_parameter/vignette_intensity = 0.159
-shader_parameter/aberation_amount = 0.5
+shader_parameter/vignette_amount = 0.626
+shader_parameter/vignette_intensity = 0.339
+shader_parameter/aberation_amount = 0.105
 shader_parameter/roll_line_amount = 0.0
 shader_parameter/roll_speed = 1.0
 shader_parameter/scan_line_strength = -8.0
-shader_parameter/pixel_strength = -2.0
+shader_parameter/pixel_strength = -1.667
+shader_parameter/saturation = 1.1
+shader_parameter/screen_curve_intensity = 800.0
 shader_parameter/crt_enabled = true
 shader_parameter/texture_emission = SubResource("ViewportTexture_bp1ju")
 
@@ -269,6 +288,8 @@ shader_parameter/texture_emission = SubResource("ViewportTexture_bp1ju")
 resource_local_to_scene = true
 material = SubResource("ShaderMaterial_w0s5i")
 size = Vector2(0.48, 0.36)
+subdivide_width = 24
+subdivide_depth = 24
 
 [sub_resource type="Environment" id="Environment_r6k71"]
 background_mode = 1
@@ -277,8 +298,8 @@ glow_bloom = 0.09
 fog_light_color = Color(0.404511, 0.404511, 0.404511, 1)
 fog_light_energy = 2.86
 adjustment_enabled = true
-adjustment_contrast = 0.93
-adjustment_saturation = 1.5
+adjustment_contrast = 1.02
+adjustment_saturation = 1.96
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_prkpf"]
 shader = ExtResource("4_61ix5")
@@ -325,19 +346,20 @@ flicker_frequency = 0.05
 [node name="AmbientLight" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.647588, 0.761991, 0, -0.761991, 0.647588, 0, 2.33191, 1.97066)
 light_color = Color(1, 0.976544, 0.872294, 1)
-light_energy = 3.803
+light_energy = 2.4
 shadow_enabled = true
 spot_range = 20.855
+spot_attenuation = 0.57
 spot_angle = 75.0
 spot_angle_attenuation = 3.24901
 script = ExtResource("3_m71ua")
-base_energy_range = Array[float]([3.803, 4.8])
+base_energy_range = Array[float]([2.4, 3.2])
 base_energy_frequency = 2.7
 flicker_energy_range = Array[float]([0.0, -0.05])
 flicker_frequency = 0.05
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.989696, 0.143182, 0, -0.143182, 0.989696, 0.0319242, 1.3384, 1.11183)
+transform = Transform3D(1, 0, 0, 0, 0.990734, 0.13582, 0, -0.13582, 0.990734, 0.0319242, 1.36286, 1.11183)
 current = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -358,5 +380,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="BackgroundHum" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_o1ah1")
+volume_db = -4.0
+autoplay = true
+bus = &"SFX"
 
 [editable path="desk_and_monitor"]

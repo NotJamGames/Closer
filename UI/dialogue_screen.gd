@@ -14,6 +14,7 @@ var dialogue_in_progress : bool = false
 var skippable : bool = false
 
 @export var rich_text_label : RichTextLabel
+@export var char_add_sfx : AudioStreamPlayer
 
 signal next_screen_requested()
 
@@ -54,7 +55,8 @@ func scroll_text() -> void:
 		complete_scroll()
 		return
 
-	# TODO: play sfx
+	char_add_sfx.play()
+
 	var split_string : Array = \
 			[
 				base_string.left(current_index),

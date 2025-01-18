@@ -1,8 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://fwuryqithpw1"]
+[gd_scene load_steps=8 format=3 uid="uid://fwuryqithpw1"]
 
 [ext_resource type="Script" path="res://UI/dialogue_screen.gd" id="1_purs8"]
+[ext_resource type="AudioStream" uid="uid://ftlblivlsix" path="res://Audio/SFX/char_add_1.wav" id="2_qo7h0"]
+[ext_resource type="AudioStream" uid="uid://b7f72ogxs2cof" path="res://Audio/SFX/char_add_2.wav" id="3_o4tob"]
+[ext_resource type="AudioStream" uid="uid://bmggv7tchsk6r" path="res://Audio/SFX/char_add_3.wav" id="4_cm03s"]
+[ext_resource type="AudioStream" uid="uid://dpy1frhji11ox" path="res://Audio/SFX/char_add_4.wav" id="5_c5bhh"]
+[ext_resource type="AudioStream" uid="uid://bdk1ewl6is2tw" path="res://Audio/SFX/char_add_5.wav" id="6_8j72k"]
 
-[node name="Dialogue" type="VBoxContainer" node_paths=PackedStringArray("rich_text_label")]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_nt167"]
+streams_count = 5
+stream_0/stream = ExtResource("2_qo7h0")
+stream_1/stream = ExtResource("3_o4tob")
+stream_2/stream = ExtResource("4_cm03s")
+stream_3/stream = ExtResource("5_c5bhh")
+stream_4/stream = ExtResource("6_8j72k")
+
+[node name="Dialogue" type="VBoxContainer" node_paths=PackedStringArray("rich_text_label", "char_add_sfx")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -11,8 +24,18 @@ grow_vertical = 2
 alignment = 1
 script = ExtResource("1_purs8")
 rich_text_label = NodePath("RichTextLabel")
+char_add_sfx = NodePath("CharAddSFX")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 2
 bbcode_enabled = true
 fit_content = true
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="CharAddSFX" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_nt167")
+volume_db = -12.0
+max_polyphony = 4
+bus = &"SFX"

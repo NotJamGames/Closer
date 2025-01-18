@@ -1,0 +1,13 @@
+Ambiences
+background_hum.wav
+Derived from:
+https://freesound.org/people/FOSSarts/sounds/761928/
+https://freesound.org/people/Clusman/sounds/543057/
+50hz hum cycle (Dexed)
+
+SFX Resources
+char_add_1.wav - Not Jam
+char_add_2.wav - Not Jam
+char_add_3.wav - Not Jam
+char_add_4.wav - Not Jam
+char_add_5.wav - Not Jam

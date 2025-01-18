@@ -3,6 +3,7 @@ extends Control
 
 @export var loading_screen : CenterContainer
 @export var dialogue_screen : VBoxContainer
+@export var test_screen : Control
 var current_screen : Control
 
 @export var cursor : Sprite2D
@@ -11,7 +12,11 @@ var current_screen : Control
 func _ready() -> void:
 	dialogue_screen.next_screen_requested.connect(set_screen)
 
-	trigger_loading_screen(2.4, "dialogue_screen", ["intro_string_1"])
+	var timer : SceneTreeTimer = get_tree().create_timer(4.8)
+	timer.timeout.connect\
+			(trigger_loading_screen.bind\
+					(2.4, "dialogue_screen", ["intro_string_1"]), \
+					CONNECT_ONE_SHOT)
 
 
 func _input(event : InputEvent) -> void:

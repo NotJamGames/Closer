@@ -65,3 +65,6 @@ layout_mode = 2
 max_value = 1.0
 step = 0.001
 show_percentage = false
+
+[node name="Offset" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
