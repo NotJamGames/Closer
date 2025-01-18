@@ -6,6 +6,7 @@ var progress_intervals : Array[float]
 
 
 @export var progress_bar : ProgressBar
+@export var loading_sfx : AudioStreamPlayer
 
 
 signal load_completed()
@@ -34,6 +35,8 @@ func configure_load(load_duration : float) -> void:
 
 	time_intervals.append(current_load_duration)
 	progress_intervals.append(current_load_duration / load_duration)
+
+	loading_sfx.play()
 
 	var timer : SceneTreeTimer = get_tree().create_timer(.1)
 	timer.timeout.connect(update_load_state, CONNECT_ONE_SHOT)

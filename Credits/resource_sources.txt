@@ -1,5 +1,7 @@
 AUDIO RESOURCES:
 
+All audio edited using Renoise and/or Reaper
+
 Ambiences
 background_hum.wav
 Derived from:
@@ -13,10 +15,16 @@ char_add_2.wav - Not Jam
 char_add_3.wav - Not Jam
 char_add_4.wav - Not Jam
 char_add_5.wav - Not Jam
+Soraboy VST
 
 crt_startup.wav
 Derived from:
 https://freesound.org/people/corkob/sounds/415594/
+
+loading_2400ms_1.wav
+loading_2400ms_2.wav
+loading_2400ms_3.wav
+All derived from https://freesound.org/people/frosthardr/sounds/553455/
 
 
 GRAPHICAL RESOURCES

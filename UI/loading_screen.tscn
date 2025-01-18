@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://de7yilbhw6eww"]
+[gd_scene load_steps=9 format=3 uid="uid://de7yilbhw6eww"]
 
 [ext_resource type="Theme" uid="uid://bo5qipei5ttjp" path="res://UI/Themes/default_theme.theme" id="1_h2pm7"]
 [ext_resource type="Script" path="res://UI/loading_screen.gd" id="2_emq8q"]
+[ext_resource type="AudioStream" uid="uid://dfo320k7ftcdj" path="res://Audio/SFX/loading_2400ms_1.wav" id="3_2n7o6"]
+[ext_resource type="AudioStream" uid="uid://btt51c34oqvmo" path="res://Audio/SFX/loading_2400ms_2.wav" id="4_n2o23"]
+[ext_resource type="AudioStream" uid="uid://d4esnv2bsgy4d" path="res://Audio/SFX/loading_2400ms_3.wav" id="6_h84ea"]
 
 [sub_resource type="Animation" id="Animation_qbhqb"]
 resource_name = "loading"
@@ -33,7 +36,13 @@ _data = {
 "loading": SubResource("Animation_qbhqb")
 }
 
-[node name="LoadingScreen" type="CenterContainer" node_paths=PackedStringArray("progress_bar")]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5ll5e"]
+streams_count = 3
+stream_0/stream = ExtResource("3_2n7o6")
+stream_1/stream = ExtResource("4_n2o23")
+stream_2/stream = ExtResource("6_h84ea")
+
+[node name="LoadingScreen" type="CenterContainer" node_paths=PackedStringArray("progress_bar", "loading_sfx")]
 texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -43,6 +52,7 @@ grow_vertical = 2
 theme = ExtResource("1_h2pm7")
 script = ExtResource("2_emq8q")
 progress_bar = NodePath("VBoxContainer/ProgressBar")
+loading_sfx = NodePath("LoadingSFX")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(120, 0)
@@ -68,3 +78,8 @@ show_percentage = false
 
 [node name="Offset" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
+
+[node name="LoadingSFX" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_5ll5e")
+volume_db = -4.0
+bus = &"SFX"
