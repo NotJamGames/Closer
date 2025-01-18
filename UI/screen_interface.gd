@@ -31,6 +31,8 @@ func set_screen(new_screen : String, args : Array = []) -> void:
 
 	current_screen = get(new_screen)
 	if current_screen == null:
+		# TODO: move this to the right place
+		cursor.visible = true
 		push_error("Error: screen %s not found" % new_screen)
 		return
 

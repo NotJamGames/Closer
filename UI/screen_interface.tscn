@@ -29,6 +29,7 @@ visible = false
 layout_mode = 1
 
 [node name="Cursor" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(240, 180)
 texture = ExtResource("5_fw073")
 centered = false
