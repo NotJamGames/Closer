@@ -1,9 +1,9 @@
 [gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bhetnyndutlfj"]
 
-[ext_resource type="Texture2D" uid="uid://cpxqpwwo7q8sv" path="res://Models/desk_and_monitor_wood.png" id="1_xtu4x"]
+[ext_resource type="Texture2D" uid="uid://xxyxmitagpq6" path="res://Models/wood.png" id="1_v0k4v"]
 
 [resource]
 resource_name = "wood"
-albedo_texture = ExtResource("1_xtu4x")
+albedo_texture = ExtResource("1_v0k4v")
 metallic = 1.0
 texture_filter = 0

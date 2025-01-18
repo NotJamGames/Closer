@@ -1,3 +1,5 @@
+AUDIO RESOURCES:
+
 Ambiences
 background_hum.wav
 Derived from:
@@ -11,3 +13,12 @@ char_add_2.wav - Not Jam
 char_add_3.wav - Not Jam
 char_add_4.wav - Not Jam
 char_add_5.wav - Not Jam
+
+crt_startup.wav
+Derived from:
+https://freesound.org/people/corkob/sounds/415594/
+
+
+GRAPHICAL RESOURCES
+Most textures hand drawn, or generated using noise
+Wood texture from https://ambientcg.com/view?id=Wood092
