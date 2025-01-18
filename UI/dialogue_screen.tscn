@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://fwuryqithpw1"]
+
+[ext_resource type="Script" path="res://UI/dialogue_screen.gd" id="1_purs8"]
+
+[node name="Dialogue" type="VBoxContainer" node_paths=PackedStringArray("rich_text_label")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+script = ExtResource("1_purs8")
+rich_text_label = NodePath("RichTextLabel")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true

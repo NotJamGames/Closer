@@ -19,6 +19,10 @@ boot_splash/use_filter=false
 config/icon="res://icon.svg"
 boot_splash/minimum_display_time=250
 
+[autoload]
+
+Strings="*res://Strings/strings.gd"
+
 [display]
 
 window/size/mode=4

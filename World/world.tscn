@@ -289,8 +289,9 @@ shader = ExtResource("4_wasif")
 shader_parameter/outerRadius = 2.36
 shader_parameter/MainAlpha = 1.0
 
-[node name="World" type="Node3D"]
+[node name="World" type="Node3D" node_paths=PackedStringArray("subviewport")]
 script = ExtResource("1_upb24")
+subviewport = NodePath("desk_and_monitor/Monitor/Screen/SubViewport")
 
 [node name="Floor" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_ttfdm")
