@@ -15,6 +15,7 @@ run/main_scene="res://World/world.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/bg_color=Color(0.027451, 0.0941176, 0.12549, 1)
 boot_splash/image="res://UI/Sprites/not_jam_logo_transparent.png"
+boot_splash/fullsize=false
 boot_splash/use_filter=false
 config/icon="res://icon.svg"
 boot_splash/minimum_display_time=250
