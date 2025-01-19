@@ -5,6 +5,7 @@ extends Control
 @export var dialogue_screen : VBoxContainer
 @export var main_screen : Control
 @export var settings_screen : Control
+@export var shop_screen : Control
 var current_screen : Control
 
 @export var cursor : Sprite2D
@@ -26,6 +27,9 @@ func _ready() -> void:
 
 	settings_screen.crt_toggled.connect(crt_toggled.emit)
 	settings_screen.next_screen_requested.connect(set_screen)
+
+	shop_screen.next_screen_requested.connect\
+			(trigger_loading_screen.bind(1.2, "main_screen"))
 
 	var timer : SceneTreeTimer = get_tree().create_timer(4.8)
 	timer.timeout.connect\
@@ -73,6 +77,10 @@ func set_screen(new_screen : String, args : Array = []) -> void:
 	elif current_screen == settings_screen:
 		cursor.visible = true
 		user_input_enabled.emit(true)
+	elif current_screen == shop_screen:
+		cursor.visible = true
+		user_input_enabled.emit(true)
+		current_screen.configure_shop()
 
 	current_screen.visible = true
 
@@ -83,4 +91,4 @@ func trigger_loading_screen\
 	set_screen("loading_screen")
 	loading_screen.configure_load(duration)
 	loading_screen.load_completed.connect\
-			(set_screen.bind(next_screen, args))
+			(set_screen.bind(next_screen, args), CONNECT_ONE_SHOT)

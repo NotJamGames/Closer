@@ -24,6 +24,7 @@ boot_splash/minimum_display_time=250
 
 Global="*res://global.gd"
 Strings="*res://Strings/strings.gd"
+Powerups="*res://Powerups/powerups.gd"
 
 [display]
 

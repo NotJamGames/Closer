@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dtx0rpqsctv8d"]
+[gd_scene load_steps=9 format=3 uid="uid://dtx0rpqsctv8d"]
 
 [ext_resource type="Script" path="res://UI/screen_interface.gd" id="1_g8wyg"]
 [ext_resource type="Theme" uid="uid://bo5qipei5ttjp" path="res://UI/Themes/default_theme.theme" id="1_v6ip5"]
@@ -7,8 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://cp3stcwcrd3f0" path="res://UI/main_screen.tscn" id="5_2xs1a"]
 [ext_resource type="Texture2D" uid="uid://rkiubywu1gup" path="res://UI/Sprites/default_cursor.png" id="5_fw073"]
 [ext_resource type="PackedScene" uid="uid://b0jakd3eg6iaf" path="res://UI/settings_screen.tscn" id="6_oxvy5"]
+[ext_resource type="PackedScene" uid="uid://cuxv41le8uvrs" path="res://UI/shop_screen.tscn" id="7_6lnqr"]
 
-[node name="ScreenInterface" type="Control" node_paths=PackedStringArray("loading_screen", "dialogue_screen", "main_screen", "settings_screen", "cursor")]
+[node name="ScreenInterface" type="Control" node_paths=PackedStringArray("loading_screen", "dialogue_screen", "main_screen", "settings_screen", "shop_screen", "cursor")]
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
@@ -22,6 +23,7 @@ loading_screen = NodePath("LoadingScreen")
 dialogue_screen = NodePath("Dialogue")
 main_screen = NodePath("MainScreen")
 settings_screen = NodePath("SettingsScreen")
+shop_screen = NodePath("ShopScreen")
 cursor = NodePath("Cursor")
 
 [node name="LoadingScreen" parent="." instance=ExtResource("3_20qly")]
@@ -37,6 +39,10 @@ visible = false
 layout_mode = 1
 
 [node name="SettingsScreen" parent="." instance=ExtResource("6_oxvy5")]
+visible = false
+layout_mode = 1
+
+[node name="ShopScreen" parent="." instance=ExtResource("7_6lnqr")]
 visible = false
 layout_mode = 1
 

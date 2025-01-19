@@ -39,7 +39,10 @@ func configure_panel() -> void:
 		element.modulate.a = .0
 
 	for coin_slot : CoinSlot in coin_slots:
-		coin_slot.toggle_state(false)
+		coin_slot.reset()
+
+	set_money(Global.money)
+	heads_label.text = "%s Heads" % Global.heads
 
 	var tween : Tween = get_tree().create_tween()
 	tween.tween_method(set_info_panel_percent_visible, .0, 1.0, .36)
@@ -53,11 +56,14 @@ func configure_panel() -> void:
 
 
 func _on_settings_pressed() -> void:
+	for coin_slot : CoinSlot in coin_slots:
+		if coin_slot.texture_button.button_pressed:
+			coin_slot.texture_button.button_pressed = false
 	next_screen_requested.emit("settings_screen")
 
 
 func set_info_panel_percent_visible(new_value : float) -> void:
-	info_panel.material.set("shader_parameter/percent_visible", new_value)
+	info_panel.material.set("shader_parameter/y_percent_visible", new_value)
 
 
 func add_panel_element(element_ref : int = 0) -> void:

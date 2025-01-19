@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bm18wdvkgarej" path="res://UI/Sprites/settings_icon.png" id="2_k4mr6"]
 [ext_resource type="Texture2D" uid="uid://b3bie74aqjvla" path="res://UI/Sprites/settings_icon_disabled.png" id="3_hraor"]
 [ext_resource type="Texture2D" uid="uid://c48e4ba3u6hpx" path="res://UI/Sprites/settings_icon_hover.png" id="3_qi74q"]
-[ext_resource type="Shader" path="res://VFX/vertical_alpha_scroll.gdshader" id="3_u1ekw"]
+[ext_resource type="Shader" path="res://VFX/alpha_scroll.gdshader" id="3_u1ekw"]
 [ext_resource type="PackedScene" uid="uid://dnkc78nmsowqu" path="res://UI/coin_slot.tscn" id="3_weww5"]
 [ext_resource type="AudioStream" uid="uid://bmggv7tchsk6r" path="res://Audio/SFX/char_add_3.wav" id="9_lleoy"]
 [ext_resource type="AudioStream" uid="uid://bqcqdt0fjh2gi" path="res://Audio/SFX/action_failure.wav" id="10_w1h5p"]
@@ -14,7 +14,8 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mbhy8"]
 shader = ExtResource("3_u1ekw")
-shader_parameter/percent_visible = 1.0
+shader_parameter/x_percent_visible = 1.0
+shader_parameter/y_percent_visible = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_uju6r"]
 streams_count = 2

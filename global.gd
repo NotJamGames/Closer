@@ -17,6 +17,9 @@ func new_game() -> void:
 	money = 4
 	heads = 1
 
+	Powerups.possible_powerups.clear()
+	Powerups.possible_powerups = Powerups.base_powerups.duplicate()
+
 
 func new_round() -> void:
 	current_round += 1

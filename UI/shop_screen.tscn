@@ -1,0 +1,119 @@
+[gd_scene load_steps=8 format=3 uid="uid://cuxv41le8uvrs"]
+
+[ext_resource type="Theme" uid="uid://bo5qipei5ttjp" path="res://UI/Themes/default_theme.theme" id="1_2fswj"]
+[ext_resource type="Script" path="res://UI/shop_screen.gd" id="2_kgceb"]
+[ext_resource type="Texture2D" uid="uid://lr5dfa8g1rg1" path="res://Powerups/Sprites/double_header.png" id="3_kd53e"]
+[ext_resource type="Shader" path="res://VFX/alpha_scroll.gdshader" id="3_tgkca"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c6q41"]
+shader = ExtResource("3_tgkca")
+shader_parameter/x_percent_visible = 0.0
+shader_parameter/y_percent_visible = 1.0
+
+[sub_resource type="Theme" id="Theme_nrhje"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nvkwi"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_top = 2
+border_color = Color(0.541176, 0.913725, 0.384314, 1)
+
+[node name="ShopScreen" type="Control" node_paths=PackedStringArray("panel")]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_2fswj")
+script = ExtResource("2_kgceb")
+panel = NodePath("VBoxContainer/PanelContainer")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="Powerup1" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(92, 92)
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("3_kd53e")
+stretch_mode = 0
+
+[node name="Powerup2" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(92, 92)
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("3_kd53e")
+stretch_mode = 0
+
+[node name="Powerup3" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(92, 92)
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("3_kd53e")
+stretch_mode = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+material = SubResource("ShaderMaterial_c6q41")
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme = SubResource("Theme_nrhje")
+theme_override_styles/panel = SubResource("StyleBoxFlat_nvkwi")
+
+[node name="Main" type="VBoxContainer" parent="VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/PanelContainer/Main"]
+layout_mode = 2
+text = "Select a powerup to view details"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/PanelContainer/Main"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="NextRound" type="Button" parent="VBoxContainer/PanelContainer/Main"]
+layout_mode = 2
+text = "NEXT ROUND"
+
+[node name="Powerup" type="VBoxContainer" parent="VBoxContainer/PanelContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 18
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "QUICK TEST"
+horizontal_alignment = 2
+
+[connection signal="pressed" from="VBoxContainer/PanelContainer/Main/NextRound" to="." method="next_round"]

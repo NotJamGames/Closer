@@ -70,7 +70,7 @@ var win_string_4 : Dictionary = \
 	"next_screen_args" : []
 }
 
-var win_strings : int = 5
+var win_strings : int = 4
 
 
 ### POSSIBLE WARNING1 WARNINGS: ###
