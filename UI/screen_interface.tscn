@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://fwuryqithpw1" path="res://UI/dialogue_screen.tscn" id="4_bocoi"]
 [ext_resource type="Texture2D" uid="uid://rkiubywu1gup" path="res://UI/Sprites/default_cursor.png" id="5_fw073"]
 
-[node name="ScreenInterface" type="Control" node_paths=PackedStringArray("loading_screen", "dialogue_screen", "test_screen", "cursor")]
+[node name="ScreenInterface" type="Control" node_paths=PackedStringArray("loading_screen", "dialogue_screen", "cursor")]
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
@@ -18,7 +18,6 @@ theme = ExtResource("1_v6ip5")
 script = ExtResource("1_g8wyg")
 loading_screen = NodePath("LoadingScreen")
 dialogue_screen = NodePath("Dialogue")
-test_screen = NodePath("")
 cursor = NodePath("Cursor")
 
 [node name="LoadingScreen" parent="." instance=ExtResource("3_20qly")]

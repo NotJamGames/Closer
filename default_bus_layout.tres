@@ -3,7 +3,7 @@
 [sub_resource type="AudioEffectReverb" id="AudioEffectReverb_86dhu"]
 resource_name = "Reverb"
 room_size = 0.62
-wet = 0.04
+wet = 0.16
 
 [resource]
 bus/1/name = &"SFX"

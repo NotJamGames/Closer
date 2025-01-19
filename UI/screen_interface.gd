@@ -8,6 +8,8 @@ var current_screen : Control
 
 @export var cursor : Sprite2D
 
+signal user_input_enabled()
+
 
 func _ready() -> void:
 	dialogue_screen.next_screen_requested.connect(set_screen)
@@ -42,7 +44,10 @@ func set_screen(new_screen : String, args : Array = []) -> void:
 		return
 
 	if current_screen == dialogue_screen:
+		user_input_enabled.emit(true)
 		current_screen.initiate_dialogue(args[0])
+	elif current_screen == loading_screen:
+		user_input_enabled.emit(true)
 
 	current_screen.visible = true
 
