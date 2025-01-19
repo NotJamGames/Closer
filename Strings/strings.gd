@@ -2,6 +2,7 @@ extends Node
 
 
 # TODO: handle automatic next screen
+var atomic_font_path : String = "res://UI/Fonts/Not Jam Atomic 20.ttf"
 
 
 var intro_string_1 : Dictionary = \
@@ -30,7 +31,8 @@ var intro_string_4 : Dictionary = \
 	"string" : "CLOSER.",
 	"next_screen" : "main_screen",
 	"next_screen_args" : [],
-	"cue" : "power_out"
+	"cue" : "power_out",
+	"use_atomic_font" : true
 }
 
 

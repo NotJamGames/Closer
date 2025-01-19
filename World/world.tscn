@@ -397,7 +397,7 @@ stream_2/stream = ExtResource("18_mjsvc")
 stream_3/stream = ExtResource("19_ihivk")
 stream_4/stream = ExtResource("20_tafpt")
 
-[node name="World" type="Node3D" node_paths=PackedStringArray("screen", "subviewport", "screen_interface", "blackout", "click_sfx", "keystroke_sfx")]
+[node name="World" type="Node3D" node_paths=PackedStringArray("screen", "subviewport", "screen_interface", "blackout", "click_sfx", "keystroke_sfx", "room_light")]
 script = ExtResource("1_upb24")
 screen = NodePath("desk_and_monitor/Monitor/Screen")
 subviewport = NodePath("desk_and_monitor/Monitor/Screen/SubViewport")
@@ -406,6 +406,7 @@ blackout = NodePath("Blackout")
 black_screen = ExtResource("2_lmplv")
 click_sfx = NodePath("ClickSFX")
 keystroke_sfx = NodePath("KeystrokeSFX")
+room_light = NodePath("AmbientLight")
 
 [node name="Floor" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_ttfdm")

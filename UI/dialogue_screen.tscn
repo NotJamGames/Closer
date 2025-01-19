@@ -1,6 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://fwuryqithpw1"]
+[gd_scene load_steps=10 format=3 uid="uid://fwuryqithpw1"]
 
 [ext_resource type="Script" path="res://UI/dialogue_screen.gd" id="1_purs8"]
+[ext_resource type="Theme" uid="uid://bo5qipei5ttjp" path="res://UI/Themes/default_theme.theme" id="1_ut3o1"]
+[ext_resource type="FontFile" uid="uid://d356gvukrvbe6" path="res://UI/Fonts/Not Jam Atomic 20.ttf" id="2_dx4cl"]
 [ext_resource type="AudioStream" uid="uid://ftlblivlsix" path="res://Audio/SFX/char_add_1.wav" id="2_qo7h0"]
 [ext_resource type="AudioStream" uid="uid://b7f72ogxs2cof" path="res://Audio/SFX/char_add_2.wav" id="3_o4tob"]
 [ext_resource type="AudioStream" uid="uid://bmggv7tchsk6r" path="res://Audio/SFX/char_add_3.wav" id="4_cm03s"]
@@ -21,10 +23,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_ut3o1")
 alignment = 1
 script = ExtResource("1_purs8")
 rich_text_label = NodePath("RichTextLabel")
 char_add_sfx = NodePath("CharAddSFX")
+atomic_font = ExtResource("2_dx4cl")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 2

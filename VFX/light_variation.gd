@@ -12,8 +12,11 @@ var current_base_index : int = 0
 var current_flicker_energy : float = .0
 var current_flicker_index : int = 0
 
-
 var light_mod : float = 1.0
+var power_is_out : bool = false
+var power_out_duration : float = 1.6
+var min_power_out_flicker : float = .04
+var max_power_out_flicker : float = .12
 
 
 func _ready() -> void:
@@ -41,3 +44,23 @@ func update_flicker_energy() -> void:
 			(self, "current_flicker_energy", 
 			flicker_energy_range[current_flicker_index], flicker_frequency)
 	tween.finished.connect(update_flicker_energy, CONNECT_ONE_SHOT)
+
+
+func power_out() -> void:
+	power_is_out = true
+	var timer : SceneTreeTimer = get_tree().create_timer(power_out_duration)
+	timer.timeout.connect(set.bind("power_is_out", false))
+
+	# TODO: play sfx
+	power_out_flicker()
+
+
+func power_out_flicker() -> void:
+	if not power_is_out:
+		light_mod = 1.0
+		return
+
+	light_mod = abs(light_mod - 1.0)
+	var timer : SceneTreeTimer = get_tree().create_timer\
+			(randf_range(min_power_out_flicker, max_power_out_flicker))
+	timer.timeout.connect(power_out_flicker)

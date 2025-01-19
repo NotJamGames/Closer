@@ -18,3 +18,7 @@ func power_on() -> void:
 
 func set_brightness(new_value : float) -> void:
 	mesh.material.set("shader_parameter/brightness", new_value)
+
+
+func set_crt_active(new_state : bool) -> void:
+	mesh.material.set("shader_parameter/crt_enabled", new_state)

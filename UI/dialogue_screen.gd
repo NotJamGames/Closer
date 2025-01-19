@@ -13,10 +13,19 @@ var next_screen_args : Array
 var dialogue_in_progress : bool = false
 var skippable : bool = false
 
+var current_string_type : String
+var default_string_type : String = \
+		"[center]%s[color=#071820]%s[/color][/center]"
+var bold_string_type : String = \
+		"[center][b]%s[color=#071820]%s[/color][/b][/center]"
+
 @export var rich_text_label : RichTextLabel
 @export var char_add_sfx : AudioStreamPlayer
 
+@export var atomic_font : Font
+
 signal next_screen_requested()
+signal event_requested()
 
 
 func _input(event : InputEvent) -> void:
@@ -43,6 +52,14 @@ func initiate_dialogue(string_ref : String) -> void:
 	next_screen = new_data["next_screen"]
 	next_screen_args = new_data["next_screen_args"]
 
+	if "use_atomic_font" in new_data:
+		current_string_type = bold_string_type
+	else:
+		current_string_type = default_string_type
+
+	if "cue" in new_data:
+		event_requested.emit(new_data["cue"])
+
 	var timer : SceneTreeTimer = get_tree().create_timer(NEW_STRING_DELAY)
 	timer.timeout.connect(scroll_text, CONNECT_ONE_SHOT)
 
@@ -63,8 +80,7 @@ func scroll_text() -> void:
 				base_string.right(base_string.length() - current_index)
 			]
 	rich_text_label.text = \
-			"[center]%s[color=#071820]%s[/color][/center]" % \
-					[split_string[0], split_string[1]]
+			current_string_type % [split_string[0], split_string[1]]
 
 	var timer : SceneTreeTimer = get_tree().create_timer(CHAR_INTERVAL)
 	timer.timeout.connect(scroll_text, CONNECT_ONE_SHOT)
@@ -73,6 +89,6 @@ func scroll_text() -> void:
 func complete_scroll() -> void:
 	dialogue_in_progress = false
 
-	rich_text_label.text = "[center]%s[/center]" % base_string
+	rich_text_label.text = current_string_type % [base_string, ""]
 	var timer : SceneTreeTimer = get_tree().create_timer(.36)
 	timer.timeout.connect(set.bind("skippable", true))

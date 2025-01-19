@@ -11,6 +11,8 @@ extends Node3D
 @export var click_sfx : AudioStreamPlayer
 @export var keystroke_sfx : AudioStreamPlayer
 
+@export var room_light : SpotLight3D
+
 var user_input_enabled : bool = false : set = set_user_input_enabled
 
 
@@ -23,6 +25,8 @@ func _ready() -> void:
 			(screen.power_on)
 
 	screen_interface.user_input_enabled.connect(set_user_input_enabled)
+	screen_interface.event_requested.connect(trigger_event)
+	screen_interface.crt_toggled.connect(screen.set_crt_active)
 
 
 func _input(event: InputEvent) -> void:
@@ -41,5 +45,13 @@ func fade_in(duration : float) -> void:
 			.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE)
 
 
+func trigger_event(event_ref : String) -> void:
+	call(event_ref)
+
+
 func set_user_input_enabled(new_state : bool) -> void:
 	user_input_enabled = new_state
+
+
+func power_out() -> void:
+	room_light.power_out()

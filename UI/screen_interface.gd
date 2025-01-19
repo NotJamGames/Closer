@@ -4,15 +4,27 @@ extends Control
 @export var loading_screen : CenterContainer
 @export var dialogue_screen : VBoxContainer
 @export var main_screen : Control
+@export var settings_screen : Control
 var current_screen : Control
 
 @export var cursor : Sprite2D
 
+var last_input : Vector2
+
 signal user_input_enabled()
+signal event_requested()
+
+### signals for settings updates ###
+signal crt_toggled()
 
 
 func _ready() -> void:
 	dialogue_screen.next_screen_requested.connect(set_screen)
+	dialogue_screen.event_requested.connect(event_requested.emit)
+
+	main_screen.next_screen_requested.connect(set_screen)
+
+	settings_screen.crt_toggled.connect(crt_toggled.emit)
 
 	var timer : SceneTreeTimer = get_tree().create_timer(4.8)
 	timer.timeout.connect\
@@ -29,8 +41,8 @@ func _input(event : InputEvent) -> void:
 				(Vector2.ZERO, 
 				Vector2(480.0, 360.0) - cursor.texture.get_size())
 
-	event.position = cursor.position
-	warp_mouse(event.position)
+	if event is InputEventMouse:
+		event.position = cursor.position
 
 
 func set_screen(new_screen : String, args : Array = []) -> void:

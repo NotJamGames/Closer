@@ -20,7 +20,7 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TextureButton" type="TextureButton" parent="."]
+[node name="Settings" type="TextureButton" parent="."]
 custom_minimum_size = Vector2(38, 38)
 layout_mode = 1
 anchors_preset = 2
@@ -31,9 +31,12 @@ offset_top = -55.0
 offset_right = 55.0
 offset_bottom = -25.0
 grow_vertical = 0
+focus_mode = 0
 texture_normal = ExtResource("2_k4mr6")
 texture_pressed = ExtResource("2_k4mr6")
 texture_hover = ExtResource("3_qi74q")
 texture_disabled = ExtResource("3_hraor")
-texture_focused = ExtResource("3_qi74q")
+texture_focused = ExtResource("2_k4mr6")
 stretch_mode = 5
+
+[connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]
