@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cp3stcwcrd3f0"]
+[gd_scene load_steps=11 format=3 uid="uid://cp3stcwcrd3f0"]
 
 [ext_resource type="Script" path="res://UI/main_screen.gd" id="1_62o8b"]
 [ext_resource type="Theme" uid="uid://bo5qipei5ttjp" path="res://UI/Themes/default_theme.theme" id="1_rskr4"]
@@ -6,23 +6,17 @@
 [ext_resource type="Texture2D" uid="uid://b3bie74aqjvla" path="res://UI/Sprites/settings_icon_disabled.png" id="3_hraor"]
 [ext_resource type="Texture2D" uid="uid://c48e4ba3u6hpx" path="res://UI/Sprites/settings_icon_hover.png" id="3_qi74q"]
 [ext_resource type="Shader" path="res://VFX/vertical_alpha_scroll.gdshader" id="3_u1ekw"]
-[ext_resource type="AudioStream" uid="uid://ftlblivlsix" path="res://Audio/SFX/char_add_1.wav" id="7_8dg0g"]
-[ext_resource type="AudioStream" uid="uid://b7f72ogxs2cof" path="res://Audio/SFX/char_add_2.wav" id="8_qnfrt"]
 [ext_resource type="AudioStream" uid="uid://bmggv7tchsk6r" path="res://Audio/SFX/char_add_3.wav" id="9_lleoy"]
-[ext_resource type="AudioStream" uid="uid://dpy1frhji11ox" path="res://Audio/SFX/char_add_4.wav" id="10_oc7gw"]
 [ext_resource type="AudioStream" uid="uid://bdk1ewl6is2tw" path="res://Audio/SFX/char_add_5.wav" id="11_87njw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mbhy8"]
 shader = ExtResource("3_u1ekw")
 shader_parameter/percent_visible = 1.0
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_p3tb0"]
-streams_count = 5
-stream_0/stream = ExtResource("7_8dg0g")
-stream_1/stream = ExtResource("8_qnfrt")
-stream_2/stream = ExtResource("9_lleoy")
-stream_3/stream = ExtResource("10_oc7gw")
-stream_4/stream = ExtResource("11_87njw")
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_uju6r"]
+streams_count = 2
+stream_0/stream = ExtResource("9_lleoy")
+stream_1/stream = ExtResource("11_87njw")
 
 [node name="MainScreen" type="Control" node_paths=PackedStringArray("info_panel", "info_panel_elements", "element_add_sfx")]
 texture_filter = 1
@@ -117,7 +111,7 @@ texture_focused = ExtResource("2_k4mr6")
 stretch_mode = 5
 
 [node name="ElementAddSFX" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamRandomizer_p3tb0")
+stream = SubResource("AudioStreamRandomizer_uju6r")
 volume_db = -12.0
 max_polyphony = 4
 bus = &"SFX"

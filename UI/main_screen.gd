@@ -37,6 +37,7 @@ func add_panel_element(element_ref : int = 0) -> void:
 	if element_ref >= info_panel_elements.size(): return
 
 	info_panel_elements[element_ref].modulate.a = 1.0
+	element_add_sfx.pitch_scale = .5 + (float(element_ref) * .33)
 	element_add_sfx.play()
 
 	var timer : SceneTreeTimer = get_tree().create_timer(ELEMENT_INTERVAL)
