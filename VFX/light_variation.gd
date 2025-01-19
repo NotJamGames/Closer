@@ -12,7 +12,8 @@ var current_base_index : int = 0
 var current_flicker_energy : float = .0
 var current_flicker_index : int = 0
 
-var light_mod : float = 1.0
+var light_mod : float = .0
+var light_mod_strength : float = .64
 var power_is_out : bool = false
 var power_out_duration : float = 1.6
 var min_power_out_flicker : float = .04
@@ -25,7 +26,8 @@ func _ready() -> void:
 
 
 func _process(_delta : float) -> void:
-	light_energy = (current_base_energy + current_flicker_energy) * light_mod
+	light_energy = (current_base_energy + current_flicker_energy) \
+			* (1.0 - (light_mod * light_mod_strength))
 
 
 func update_base_energy() -> void:
@@ -57,7 +59,7 @@ func power_out() -> void:
 
 func power_out_flicker() -> void:
 	if not power_is_out:
-		light_mod = 1.0
+		light_mod = .0
 		return
 
 	light_mod = abs(light_mod - 1.0)
