@@ -1,0 +1,196 @@
+[gd_scene load_steps=17 format=3 uid="uid://dnkc78nmsowqu"]
+
+[ext_resource type="Script" path="res://UI/coin_slot.gd" id="1_xgt0a"]
+[ext_resource type="Texture2D" uid="uid://g1jhatxk0pk4" path="res://GameElements/Sprites/add_coin.png" id="2_ec1ut"]
+[ext_resource type="Texture2D" uid="uid://beakx2oq8aa6e" path="res://GameElements/Sprites/heads.png" id="2_p431h"]
+[ext_resource type="Texture2D" uid="uid://ddsnwqlxjcwgo" path="res://GameElements/Sprites/tails.png" id="3_jf4lb"]
+[ext_resource type="Texture2D" uid="uid://ckenfyph44gmj" path="res://GameElements/Sprites/coin_flip.png" id="5_eia5i"]
+[ext_resource type="AudioStream" uid="uid://6tc6ku00oibw" path="res://Audio/SFX/flip_start.wav" id="6_w0exr"]
+[ext_resource type="AudioStream" uid="uid://866g14kejxoh" path="res://Audio/SFX/flip_tails.wav" id="7_ody22"]
+[ext_resource type="AudioStream" uid="uid://ds8duy0xw4tkv" path="res://Audio/SFX/flip_heads.wav" id="8_tv3r5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ofk4e"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.541176, 0.913725, 0.384314, 1)
+anti_aliasing = false
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lk3c6"]
+atlas = ExtResource("5_eia5i")
+region = Rect2(0, 0, 46, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vfi4n"]
+atlas = ExtResource("5_eia5i")
+region = Rect2(46, 0, 46, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbkv1"]
+atlas = ExtResource("5_eia5i")
+region = Rect2(92, 0, 46, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fpd2p"]
+atlas = ExtResource("5_eia5i")
+region = Rect2(138, 0, 46, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdbx8"]
+atlas = ExtResource("5_eia5i")
+region = Rect2(46, 46, 46, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1gk7s"]
+atlas = ExtResource("5_eia5i")
+region = Rect2(0, 46, 46, 46)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cpqih"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lk3c6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vfi4n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbkv1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fpd2p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdbx8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1gk7s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lk3c6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vfi4n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbkv1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fpd2p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdbx8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1gk7s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lk3c6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vfi4n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbkv1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fpd2p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdbx8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1gk7s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lk3c6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vfi4n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbkv1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fpd2p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdbx8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1gk7s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lk3c6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vfi4n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbkv1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fpd2p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdbx8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1gk7s")
+}],
+"loop": false,
+"name": &"Flip",
+"speed": 24.0
+}]
+
+[node name="CoinSlot" type="PanelContainer" node_paths=PackedStringArray("flip_start_sfx", "flip_results_sfx", "texture_button", "animated_sprite")]
+texture_filter = 1
+custom_minimum_size = Vector2(96, 96)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -46.0
+offset_right = 46.0
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_ofk4e")
+script = ExtResource("1_xgt0a")
+empty_resource = ExtResource("2_ec1ut")
+tails_resource = ExtResource("3_jf4lb")
+heads_resource = ExtResource("2_p431h")
+flip_start_sfx = NodePath("FlipStartSFX")
+flip_results_sfx = [NodePath("FlipTailsSFX"), NodePath("FlipHeadsSFX")]
+texture_button = NodePath("TextureButton")
+animated_sprite = NodePath("AnimatedSprite2D")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 2
+toggle_mode = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(2, 2)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_cpqih")
+animation = &"Flip"
+centered = false
+
+[node name="FlipStartSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_w0exr")
+volume_db = -8.0
+bus = &"SFX"
+
+[node name="FlipTailsSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_ody22")
+volume_db = -4.0
+bus = &"SFX"
+
+[node name="FlipHeadsSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_tv3r5")
+volume_db = -4.0
+bus = &"SFX"
+
+[connection signal="toggled" from="TextureButton" to="." method="attempt_toggle"]

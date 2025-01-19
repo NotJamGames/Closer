@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dv7eof4sag4go"
-path="res://.godot/imported/coin_slot.png-d04fa3db7c797d1a20a75ea55af6cde8.ctex"
+uid="uid://ckenfyph44gmj"
+path="res://.godot/imported/coin_flip.png-b7a06b0cbeaa62e0b771c188162f1c60.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://GameElements/Sprites/coin_slot.png"
-dest_files=["res://.godot/imported/coin_slot.png-d04fa3db7c797d1a20a75ea55af6cde8.ctex"]
+source_file="res://GameElements/Sprites/coin_flip.png"
+dest_files=["res://.godot/imported/coin_flip.png-b7a06b0cbeaa62e0b771c188162f1c60.ctex"]
 
 [params]
 

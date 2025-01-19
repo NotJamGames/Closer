@@ -2,19 +2,22 @@ AUDIO RESOURCES
 All audio edited using Renoise and/or Reaper
 
 Ambiences
-background_hum.wav
+background_hum.ogg
 Derived from:
 https://freesound.org/people/FOSSarts/sounds/761928/
 https://freesound.org/people/Clusman/sounds/543057/
 50hz hum cycle (Dexed)
 
 SFX Resources
+action_failure.wav - Not Jam
+Made with Soraboy VST
+
 char_add_1.wav - Not Jam
 char_add_2.wav - Not Jam
 char_add_3.wav - Not Jam
 char_add_4.wav - Not Jam
 char_add_5.wav - Not Jam
-Soraboy VST
+Made with Soraboy VST
 
 click_1.wav
 click_2.wav
@@ -27,6 +30,11 @@ https://freesound.org/people/ProductionNow/sounds/321491/
 crt_startup.wav
 Derived from:
 https://freesound.org/people/corkob/sounds/415594/
+
+flip_heads.wav - Not Jam
+flip_start.wav - Not Jam
+flip_tails.wav - Not Jam
+Made with Soraboy VST
 
 keystroke_1.wav
 keystroke_1.wav
@@ -41,6 +49,10 @@ loading_2400ms_2.wav
 loading_2400ms_3.wav
 All derived from https://freesound.org/people/frosthardr/sounds/553455/
 
+Dexed can be found here:
+https://asb2m10.github.io/dexed/
+Soraboy VST can be found here:
+https://shadowsora211.itch.io/soraboy
 
 
 GRAPHICAL RESOURCES

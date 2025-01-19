@@ -35,6 +35,42 @@ var intro_string_4 : Dictionary = \
 	"use_atomic_font" : true
 }
 
+var win_string_0 : Dictionary = \
+{
+	"string" : "You win... for now.",
+	"next_screen" : "shop_screen",
+	"next_screen_args" : []
+}
+
+var win_string_1 : Dictionary = \
+{
+	"string" : "You got lucky.",
+	"next_screen" : "shop_screen",
+	"next_screen_args" : []
+}
+
+var win_string_2 : Dictionary = \
+{
+	"string" : "Well played.",
+	"next_screen" : "shop_screen",
+	"next_screen_args" : []
+}
+
+var win_string_3 : Dictionary = \
+{
+	"string" : "Not bad.",
+	"next_screen" : "shop_screen",
+	"next_screen_args" : []
+}
+
+var win_string_4 : Dictionary = \
+{
+	"string" : "Let's play again.",
+	"next_screen" : "shop_screen",
+	"next_screen_args" : []
+}
+
+var win_strings : int = 5
 
 
 ### POSSIBLE WARNING1 WARNINGS: ###

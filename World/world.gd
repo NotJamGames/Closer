@@ -29,6 +29,8 @@ func _ready() -> void:
 	screen_interface.event_requested.connect(trigger_event)
 	screen_interface.crt_toggled.connect(screen.set_crt_active)
 
+	Global.new_game()
+
 
 func _input(event: InputEvent) -> void:
 	if user_input_enabled:
