@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://cp3stcwcrd3f0"]
+
+[ext_resource type="Script" path="res://UI/main_screen.gd" id="1_62o8b"]
+[ext_resource type="Texture2D" uid="uid://bm18wdvkgarej" path="res://UI/Sprites/settings_icon.png" id="2_k4mr6"]
+[ext_resource type="Texture2D" uid="uid://b3bie74aqjvla" path="res://UI/Sprites/settings_icon_disabled.png" id="3_hraor"]
+[ext_resource type="Texture2D" uid="uid://c48e4ba3u6hpx" path="res://UI/Sprites/settings_icon_hover.png" id="3_qi74q"]
+
+[node name="MainScreen" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_62o8b")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureButton" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(38, 38)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = -55.0
+offset_right = 55.0
+offset_bottom = -25.0
+grow_vertical = 0
+texture_normal = ExtResource("2_k4mr6")
+texture_pressed = ExtResource("2_k4mr6")
+texture_hover = ExtResource("3_qi74q")
+texture_disabled = ExtResource("3_hraor")
+texture_focused = ExtResource("3_qi74q")
+stretch_mode = 5

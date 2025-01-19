@@ -20,16 +20,17 @@ var intro_string_2 : Dictionary = \
 
 var intro_string_3 : Dictionary = \
 {
-	"string" : "Tails:",
+	"string" : "Tails: I get...",
 	"next_screen" : "dialogue_screen",
 	"next_screen_args" : ["intro_string_4"]
 }
 
 var intro_string_4 : Dictionary = \
 {
-	"string" : "I get CLOSER",
+	"string" : "CLOSER.",
 	"next_screen" : "main_screen",
-	"next_screen_args" : []
+	"next_screen_args" : [],
+	"cue" : "power_out"
 }
 
 

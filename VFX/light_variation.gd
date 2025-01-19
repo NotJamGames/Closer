@@ -13,13 +13,16 @@ var current_flicker_energy : float = .0
 var current_flicker_index : int = 0
 
 
+var light_mod : float = 1.0
+
+
 func _ready() -> void:
 	update_base_energy()
 	update_flicker_energy()
 
 
 func _process(_delta : float) -> void:
-	light_energy = current_base_energy + current_flicker_energy
+	light_energy = (current_base_energy + current_flicker_energy) * light_mod
 
 
 func update_base_energy() -> void:

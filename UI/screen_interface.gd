@@ -3,7 +3,7 @@ extends Control
 
 @export var loading_screen : CenterContainer
 @export var dialogue_screen : VBoxContainer
-@export var test_screen : Control
+@export var main_screen : Control
 var current_screen : Control
 
 @export var cursor : Sprite2D
@@ -29,6 +29,9 @@ func _input(event : InputEvent) -> void:
 				(Vector2.ZERO, 
 				Vector2(480.0, 360.0) - cursor.texture.get_size())
 
+	event.position = cursor.position
+	warp_mouse(event.position)
+
 
 func set_screen(new_screen : String, args : Array = []) -> void:
 	# TODO: hide cursor if not main screen
@@ -44,9 +47,14 @@ func set_screen(new_screen : String, args : Array = []) -> void:
 		return
 
 	if current_screen == dialogue_screen:
+		cursor.visible = false
 		user_input_enabled.emit(true)
 		current_screen.initiate_dialogue(args[0])
 	elif current_screen == loading_screen:
+		cursor.visible = false
+		user_input_enabled.emit(true)
+	elif current_screen == main_screen:
+		cursor.visible = true
 		user_input_enabled.emit(true)
 
 	current_screen.visible = true
