@@ -25,6 +25,7 @@ func _ready() -> void:
 	main_screen.next_screen_requested.connect(set_screen)
 
 	settings_screen.crt_toggled.connect(crt_toggled.emit)
+	settings_screen.next_screen_requested.connect(set_screen)
 
 	var timer : SceneTreeTimer = get_tree().create_timer(4.8)
 	timer.timeout.connect\
@@ -66,6 +67,10 @@ func set_screen(new_screen : String, args : Array = []) -> void:
 		cursor.visible = false
 		user_input_enabled.emit(true)
 	elif current_screen == main_screen:
+		cursor.visible = true
+		main_screen.configure_panel()
+		user_input_enabled.emit(true)
+	elif current_screen == settings_screen:
 		cursor.visible = true
 		user_input_enabled.emit(true)
 

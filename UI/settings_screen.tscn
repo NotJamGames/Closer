@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://UI/settings_screen.gd" id="1_wm1c3"]
 
-[node name="SettingsScreen" type="Control" node_paths=PackedStringArray("crt_effect_button")]
+[node name="SettingsScreen" type="Control" node_paths=PackedStringArray("crt_effect_button", "audio_button", "quit_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,6 +11,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wm1c3")
 crt_effect_button = NodePath("CenterContainer/CrtEffectButton")
+audio_button = NodePath("CenterContainer/Audio")
+quit_button = NodePath("CenterContainer/Quit")
 
 [node name="CenterContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -25,9 +27,19 @@ alignment = 1
 layout_mode = 2
 text = "CRT Effect: Enabled"
 
+[node name="Audio" type="Button" parent="CenterContainer"]
+layout_mode = 2
+text = "Audio: Enabled"
+
+[node name="Back" type="Button" parent="CenterContainer"]
+layout_mode = 2
+text = "Back"
+
 [node name="Quit" type="Button" parent="CenterContainer"]
 layout_mode = 2
 text = "Quit"
 
 [connection signal="pressed" from="CenterContainer/CrtEffectButton" to="." method="toggle_crt"]
+[connection signal="pressed" from="CenterContainer/Audio" to="." method="toggle_audio"]
+[connection signal="pressed" from="CenterContainer/Back" to="." method="back"]
 [connection signal="pressed" from="CenterContainer/Quit" to="." method="quit"]

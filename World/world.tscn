@@ -529,5 +529,6 @@ bus = &"SFX"
 [node name="PowerOutage" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_tgy4c")
 volume_db = -4.0
+bus = &"SFX"
 
 [editable path="desk_and_monitor"]
