@@ -19,6 +19,8 @@ var power_out_duration : float = 1.6
 var min_power_out_flicker : float = .04
 var max_power_out_flicker : float = .12
 
+@export var matched_sfx : AudioStreamPlayer
+
 
 func _ready() -> void:
 	update_base_energy()
@@ -60,9 +62,16 @@ func power_out() -> void:
 func power_out_flicker() -> void:
 	if not power_is_out:
 		light_mod = .0
+		matched_sfx.stop()
 		return
 
 	light_mod = abs(light_mod - 1.0)
+
+	if is_zero_approx(light_mod):
+		matched_sfx.stop()
+	else:
+		matched_sfx.play()
+
 	var timer : SceneTreeTimer = get_tree().create_timer\
 			(randf_range(min_power_out_flicker, max_power_out_flicker))
 	timer.timeout.connect(power_out_flicker)

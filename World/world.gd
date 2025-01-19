@@ -10,6 +10,7 @@ extends Node3D
 
 @export var click_sfx : AudioStreamPlayer
 @export var keystroke_sfx : AudioStreamPlayer
+@export var power_outage_sfx : AudioStreamPlayer
 
 @export var room_light : SpotLight3D
 
