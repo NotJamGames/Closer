@@ -64,6 +64,7 @@ func populate_powerups() -> void:
 
 	for i : int in powerup_buttons.size():
 		var powerup_button : TextureButton = powerup_buttons[i]
+		powerup_button.modulate.a = 1.0
 
 		if i >= powerup_data.size():
 			powerup_button.reset()
@@ -72,6 +73,7 @@ func populate_powerups() -> void:
 
 		num_powerups += 1
 		powerup_button.set_data(powerup_data[i])
+		powerup_button.visible = true
 
 
 func next_round() -> void:
@@ -116,6 +118,13 @@ func purchase_requested() -> void:
 	set_active_panel(main_panel)
 	Global.callv(powerup_data["effect"][0], powerup_data["effect"][1])
 	purchase_successful_sfx.play()
+
+	if powerup_data.keys().has("unlock"):
+		Powerups.possible_powerups.append(powerup_data["unlock"])
+
+	var powerup_var_name : String = powerup_data["title"]
+	powerup_var_name = powerup_var_name.to_snake_case()
+	Powerups.possible_powerups.erase(powerup_var_name)
 
 	money_label.text = "%s¢" % Global.money
 	for powerup_button : PowerupButton in powerup_buttons:
