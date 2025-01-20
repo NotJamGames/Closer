@@ -66,6 +66,7 @@ loading_2400ms_3.wav
 All derived from https://freesound.org/people/frosthardr/sounds/553455/
 
 lose_jingle.wav - Not Jam
+win_jingle.wav - Not Jam
 Made with Soraboy VST
 
 thud.wav
