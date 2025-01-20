@@ -1,3 +1,5 @@
+// Source: https://godotshaders.com/shader/vignette-2/
+
 shader_type canvas_item;
 
 uniform float outer_radius : hint_range(0.0, 5.0) = 1.0;
