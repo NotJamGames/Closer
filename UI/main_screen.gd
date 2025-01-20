@@ -21,12 +21,15 @@ var results_remaining : int = 4
 @export var action_failure_sfx : AudioStreamPlayer
 @export var win_jingle_sfx : AudioStreamPlayer
 
+var coinless_run_permitted : bool = false
+
 signal next_screen_requested()
 
 
 func _ready() -> void:
 	for coin_slot : CoinSlot in coin_slots:
 		coin_slot.toggle_attempted.connect(check_coin_toggle)
+		coin_slot.toggle_failed.connect(action_failure_sfx.play)
 		coin_slot.coin_flipped.connect(set_heads)
 
 
@@ -47,6 +50,8 @@ func configure_panel() -> void:
 	var tween : Tween = get_tree().create_tween()
 	tween.tween_method(set_info_panel_percent_visible, .0, 1.0, .36)
 
+	coinless_run_permitted = Global.money == 0
+
 	set_buttons_disabled(false)
 
 	visible = true
@@ -57,8 +62,9 @@ func configure_panel() -> void:
 
 func _on_settings_pressed() -> void:
 	for coin_slot : CoinSlot in coin_slots:
-		if coin_slot.texture_button.button_pressed:
-			coin_slot.texture_button.button_pressed = false
+		if coin_slot.active:
+			Global.money += 1
+			coin_slot.reset()
 	next_screen_requested.emit("settings_screen")
 
 
@@ -83,7 +89,9 @@ func set_money(new_value : int) -> void:
 
 
 func set_heads(result : int) -> void:
-	Global.heads = max(Global.heads - result, 0)
+	set_money(Global.money + (result * Global.cashback))
+
+	Global.heads = max(Global.heads - (result * Global.heads_mod), 0)
 	heads_label.text = "%s Heads" % Global.heads
 	decrement_results_remaining()
 
@@ -119,10 +127,10 @@ func check_coin_toggle(coin_slot : CoinSlot, new_state : bool) -> void:
 func play() -> void:
 	var coins_active : int = 0
 	for coin_slot : CoinSlot in coin_slots:
-		if coin_slot.texture_button.button_pressed:
+		if coin_slot.active:
 			coins_active += 1
 
-	if coins_active == 0:
+	if coins_active == 0 and not coinless_run_permitted:
 		action_failure_sfx.play()
 		return
 

@@ -1,11 +1,6 @@
 class_name CoinSlot
 extends PanelContainer
 
-
-signal toggle_attempted()
-signal coin_flipped()
-
-
 @export var empty_resource : Resource
 @export var tails_resource : Resource
 @export var heads_resource : Resource
@@ -19,16 +14,26 @@ signal coin_flipped()
 @export var texture_button : TextureButton
 @export var animated_sprite : AnimatedSprite2D
 
+var active : bool = false
 var disabled : bool = false
+
+signal toggle_attempted()
+signal toggle_failed()
+signal coin_flipped()
 
 
 func _ready() -> void:
 	toggle_state(false)
 
 
-func attempt_toggle(new_state : bool) -> void:
+func attempt_toggle() -> void:
 	if disabled: return
-	toggle_attempted.emit(self, new_state)
+	if Global.money <= 0 and not active:
+		toggle_failed.emit()
+	else:
+		active = not active
+		toggle_attempted.emit(self, active)
+
 
 
 func toggle_state(new_state : bool) -> void:
@@ -38,8 +43,8 @@ func toggle_state(new_state : bool) -> void:
 func reset() -> void:
 	disabled = true
 	set_textures(empty_resource)
-	texture_button.button_pressed = false
 	disabled = false
+	active = false
 
 
 func set_disabled(new_state : bool) -> void:
@@ -47,7 +52,7 @@ func set_disabled(new_state : bool) -> void:
 
 
 func flip() -> void:
-	if not texture_button.button_pressed:
+	if not active:
 		coin_flipped.emit(false)
 		return
 

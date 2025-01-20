@@ -193,4 +193,4 @@ stream = ExtResource("8_tv3r5")
 volume_db = -4.0
 bus = &"SFX"
 
-[connection signal="toggled" from="TextureButton" to="." method="attempt_toggle"]
+[connection signal="pressed" from="TextureButton" to="." method="attempt_toggle"]

@@ -12,6 +12,10 @@ var odds : float = .5
 var flips_since_last_head : int = 0
 
 
+var heads_mod : int = 1
+var cashback : int = 0
+
+
 func new_game() -> void:
 	current_round = 1
 	money = 4
@@ -28,10 +32,18 @@ func new_round() -> void:
 
 
 func flip_coin() -> bool:
-	# prevent to many consecutive tails results
+	# prevent too many consecutive tails results
 	# so game feels a little fairer
-	if flips_since_last_head > 3:
+	if flips_since_last_head > 4:
 		flips_since_last_head = 0
 		return true
 
 	return randf() < odds
+
+
+func set_heads_mod(new_value : int) -> void:
+	heads_mod = new_value
+
+
+func set_cashback(new_value : int) -> void:
+	cashback = new_value

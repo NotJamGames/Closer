@@ -168,5 +168,10 @@ stream = ExtResource("11_hwp20")
 volume_db = -4.0
 bus = &"SFX"
 
+[node name="LoseJingleSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_hwp20")
+volume_db = -4.0
+bus = &"SFX"
+
 [connection signal="pressed" from="HBoxContainer/InfoPanel/VBoxContainer/Play" to="." method="play"]
 [connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]

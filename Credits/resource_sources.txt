@@ -49,6 +49,9 @@ loading_2400ms_2.wav
 loading_2400ms_3.wav
 All derived from https://freesound.org/people/frosthardr/sounds/553455/
 
+lose_jingle.wav - Not Jam
+Made with Soraboy VST
+
 Dexed can be found here:
 https://asb2m10.github.io/dexed/
 Soraboy VST can be found here:
