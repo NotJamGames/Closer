@@ -133,6 +133,36 @@ var lose_string_2_d : Dictionary = \
 }
 
 
+var lose_string_3_a : Dictionary = \
+{
+	"string" : "",
+	"next_screen" : "dialogue_screen",
+	"next_screen_args" : ["lose_string_3_b"],
+}
+
+var lose_string_3_b : Dictionary = \
+{
+	"string" : "I expected more.",
+	"next_screen" : "dialogue_screen",
+	"next_screen_args" : ["lose_string_3_c"],
+}
+
+var lose_string_3_c : Dictionary = \
+{
+	"string" : "Goodbye.",
+	"next_screen" : "dialogue_screen",
+	"cue" : "game_over",
+	"next_screen_args" : ["lose_string_3_d"],
+}
+
+var lose_string_3_d : Dictionary = \
+{
+	"string" : "",
+	"next_screen" : "dialogue_screen",	
+	"next_screen_args" : ["lose_string_3_d"]
+}
+
+
 ### POSSIBLE WARNING1 WARNINGS: ###
 # That wasn't so lucky
 

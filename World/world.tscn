@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://3vqlpilc2fl8"]
+[gd_scene load_steps=48 format=3 uid="uid://3vqlpilc2fl8"]
 
 [ext_resource type="PackedScene" uid="uid://l21ohcak7u52" path="res://Models/desk_and_monitor.glb" id="1_2j35s"]
 [ext_resource type="Script" path="res://World/world.gd" id="1_upb24"]
@@ -11,7 +11,9 @@
 [ext_resource type="AudioStream" uid="uid://bmaplradmvpc8" path="res://Audio/Ambiences/background_hum.ogg" id="7_o1ah1"]
 [ext_resource type="AudioStream" uid="uid://xnaxvwcy6qel" path="res://Audio/SFX/crt_startup.wav" id="7_tlk8b"]
 [ext_resource type="AudioStream" uid="uid://d3ugm48yyb7r5" path="res://Audio/SFX/click_1.wav" id="11_0smbf"]
+[ext_resource type="AudioStream" uid="uid://blaj4d7pvu1qr" path="res://Audio/SFX/ambience_2.ogg" id="11_a8ec5"]
 [ext_resource type="AudioStream" uid="uid://daq1h3ptosqww" path="res://Audio/SFX/click_2.wav" id="12_8djac"]
+[ext_resource type="AudioStream" uid="uid://da86olb218hit" path="res://Audio/SFX/ambience_3.ogg" id="12_r6a2s"]
 [ext_resource type="AudioStream" uid="uid://bv45a28dht1rn" path="res://Audio/SFX/click_3.wav" id="13_ea057"]
 [ext_resource type="AudioStream" uid="uid://bhu7bvvv678kn" path="res://Audio/SFX/click_4.wav" id="14_p6rho"]
 [ext_resource type="AudioStream" uid="uid://dp87u04nlqvn7" path="res://Audio/SFX/click_5.wav" id="15_vtsa8"]
@@ -24,6 +26,8 @@
 [ext_resource type="AudioStream" uid="uid://gsyisl77q4u0" path="res://Audio/SFX/power_outage_2.wav" id="22_dpb0u"]
 [ext_resource type="AudioStream" uid="uid://ct0e4vbay6tit" path="res://Audio/SFX/power_outage_3.wav" id="23_1pq5w"]
 [ext_resource type="AudioStream" uid="uid://bepsb76kwr0lw" path="res://Audio/SFX/crack.wav" id="24_oovri"]
+[ext_resource type="AudioStream" uid="uid://cxiw22ixi2w2k" path="res://Audio/SFX/thud.wav" id="25_6y5bk"]
+[ext_resource type="AudioStream" uid="uid://dv4ln5l6s20au" path="res://Audio/SFX/footsteps_running.wav" id="26_q3mq6"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ikkt3"]
 noise_type = 3
@@ -382,7 +386,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_qwal0"]
 resource_name = "Death"
-length = 3.6
+length = 8.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -414,17 +418,105 @@ tracks/2/path = NodePath("..")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(2.03333),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(2.03333, 7.93333),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
 "method": &"fade_out"
+}, {
+"args": [],
+"method": &"reload"
 }]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Crack")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Thud")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(3.2333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Ambience2")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"stop"
+}]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Ambience3")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"stop"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_cok5c"]
+resource_name = "GlanceLeft"
+length = 3.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.0319242, 1.36286, 1.11183)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.03333, 1.2, 1.53333, 1.9, 2.23333, 3.3),
+"transitions": PackedFloat32Array(1, 0.143587, 2.82842, 3.03143, 3.24901, 2.82842, 1),
+"update": 0,
+"values": [Vector3(-0.175441, 0, 0), Vector3(-0.175441, 0, 0), Vector3(-0.0349066, 1.78024, 0), Vector3(0, 1.85005, 0), Vector3(0.0698132, 1.65806, 0), Vector3(-0.0349066, 1.78024, 0), Vector3(-0.175441, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3vkgt"]
 _data = {
 "Death": SubResource("Animation_qwal0"),
+"GlanceLeft": SubResource("Animation_cok5c"),
 "RESET": SubResource("Animation_u62p2"),
 "WakeUp": SubResource("Animation_h6gib")
 }
@@ -474,16 +566,20 @@ stream_0/stream = ExtResource("21_sjoo2")
 stream_1/stream = ExtResource("22_dpb0u")
 stream_2/stream = ExtResource("23_1pq5w")
 
-[node name="World" type="Node3D" node_paths=PackedStringArray("screen", "subviewport", "screen_interface", "blackout", "click_sfx", "keystroke_sfx", "power_outage_sfx", "room_light")]
+[node name="World" type="Node3D" node_paths=PackedStringArray("screen", "subviewport", "screen_interface", "blackout", "animation_player", "click_sfx", "keystroke_sfx", "power_outage_sfx", "footsteps_running", "ambience_2", "ambience_3", "room_light")]
 script = ExtResource("1_upb24")
 screen = NodePath("desk_and_monitor/Monitor/Screen")
 subviewport = NodePath("desk_and_monitor/Monitor/Screen/SubViewport")
 screen_interface = NodePath("desk_and_monitor/Monitor/Screen/SubViewport/ScreenInterface")
 blackout = NodePath("Blackout")
 black_screen = ExtResource("2_lmplv")
+animation_player = NodePath("Camera3D/AnimationPlayer")
 click_sfx = NodePath("ClickSFX")
 keystroke_sfx = NodePath("KeystrokeSFX")
 power_outage_sfx = NodePath("PowerOutage")
+footsteps_running = NodePath("FootstepsRunning")
+ambience_2 = NodePath("Ambience2")
+ambience_3 = NodePath("Ambience3")
 room_light = NodePath("AmbientLight")
 
 [node name="Floor" type="MeshInstance3D" parent="."]
@@ -582,6 +678,15 @@ volume_db = -4.0
 autoplay = true
 bus = &"SFX"
 
+[node name="Ambience2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_a8ec5")
+volume_db = -3.0
+bus = &"SFX"
+
+[node name="Ambience3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_r6a2s")
+bus = &"SFX"
+
 [node name="ClickSFX" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_uydr7")
 volume_db = -12.0
@@ -600,9 +705,16 @@ volume_db = -4.0
 bus = &"SFX"
 
 [node name="Crack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("24_oovri")
+bus = &"SFX"
 
 [node name="Thud" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("24_oovri")
+stream = ExtResource("25_6y5bk")
+bus = &"SFX"
+
+[node name="FootstepsRunning" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.80589, 0, 12.1194)
+stream = ExtResource("26_q3mq6")
 bus = &"SFX"
 
 [editable path="desk_and_monitor"]

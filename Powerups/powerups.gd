@@ -29,10 +29,30 @@ var cashback : Dictionary = \
 	"texture" : preload("res://Powerups/Sprites/cashback.png")
 }
 
+# slightly over the quoted odds here, feels better
+var weighted_coins : Dictionary = \
+{
+	"title" : "WEIGHTED COINS",
+	"description" : "2/3 chance of heads per flip",
+	"cost" : 1,
+	"effect" : ["set_odds", [.7]],
+	"texture" : preload("res://Powerups/Sprites/weighted_coins.png")
+}
+
+var divine_intervention : Dictionary = \
+{
+	"title" : "DIVINE INTERVENTION",
+	"description" : "Can't fail (one round only)",
+	"cost" : 5,
+	"effect" : ["set_divine_intervention", [true]],
+	"texture" : preload("res://Powerups/Sprites/divine_intervention.png")
+}
+
 
 var base_powerups : Array[String] = \
 [
-	"double_header", "cashback"
+	"double_header", "cashback", "weighted_coins", "divine_intervention",
+	
 ]
 @onready var possible_powerups : Array[String] = base_powerups.duplicate()
 
@@ -41,7 +61,7 @@ func get_options() -> Array[Dictionary]:
 	possible_powerups.shuffle()
 
 	var options : Array[Dictionary] = []
-	for i : int in 2:
+	for i : int in 3:
 		if i >= possible_powerups.size(): return options
 		options.append(get(possible_powerups[i]))
 

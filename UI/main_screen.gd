@@ -21,6 +21,7 @@ var results_remaining : int = 4
 @export var action_failure_sfx : AudioStreamPlayer
 @export var win_jingle_sfx : AudioStreamPlayer
 @export var lose_jingle_sfx : AudioStreamPlayer
+@export var divine_intervention_sfx : AudioStreamPlayer
 
 var coinless_run_permitted : bool = false
 
@@ -141,24 +142,38 @@ func play() -> void:
 
 func evaluate_result() -> void:
 	if Global.heads == 0:
-		win_jingle_sfx.play()
-		var timer : SceneTreeTimer = get_tree().create_timer(.8)
-		await timer.timeout
-		next_screen_requested.emit\
-				(
-					"dialogue_screen", 
-					["win_string_%s" % randi_range(0, Strings.win_strings)]
-				)
+		win_round()
 	else:
-		lose_jingle_sfx.play()
-		Global.closeness += 1
-		var timer : SceneTreeTimer = get_tree().create_timer(.8)
-		await timer.timeout
-		next_screen_requested.emit\
-				(
-					"dialogue_screen", 
-					["lose_string_%s_a" % Global.closeness]
-				)
+		if Global.divine_intervention:
+			Global.divine_intervention = false
+			divine_intervention_sfx.play()
+			await divine_intervention_sfx.finished
+			win_round()
+		else:
+			lose_round()
+
+
+func win_round() -> void:
+	Global.progress_round = true
+	win_jingle_sfx.play()
+	await get_tree().create_timer(.8).timeout
+	next_screen_requested.emit\
+			(
+				"dialogue_screen", 
+				["win_string_%s" % randi_range(0, Strings.win_strings)]
+			)
+
+
+func lose_round() -> void:
+	Global.progress_round = false
+	lose_jingle_sfx.play()
+	Global.closeness += 1
+	await get_tree().create_timer(.8).timeout
+	next_screen_requested.emit\
+			(
+				"dialogue_screen", 
+				["lose_string_%s_a" % Global.closeness]
+			)
 
 
 func flip_coins(coin_index : int = 0) -> void:

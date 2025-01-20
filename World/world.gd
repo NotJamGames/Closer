@@ -8,9 +8,14 @@ extends Node3D
 
 @export var black_screen : Resource
 
+@export var animation_player : AnimationPlayer
+
 @export var click_sfx : AudioStreamPlayer
 @export var keystroke_sfx : AudioStreamPlayer
 @export var power_outage_sfx : AudioStreamPlayer
+@export var footsteps_running : AudioStreamPlayer3D
+@export var ambience_2 : AudioStreamPlayer
+@export var ambience_3 : AudioStreamPlayer
 
 @export var room_light : SpotLight3D
 
@@ -67,6 +72,7 @@ func power_out() -> void:
 
 
 func lights_down_a() -> void:
+	ambience_2.play()
 	room_light.spot_angle = 33.0
 	room_light.power_out()
 
@@ -74,3 +80,22 @@ func lights_down_a() -> void:
 func lights_down_b() -> void:
 	room_light.light_color = Color(1.0, .0, .0, 1.0)
 	room_light.power_out()
+
+	await get_tree().create_timer(1.2).timeout
+
+	ambience_3.play()
+	footsteps_running.play()
+	animation_player.play("GlanceLeft")
+	var tween : Tween = get_tree().create_tween()
+	tween.tween_property(footsteps_running, "position:z", 3.7, 1.4)
+
+
+func game_over() -> void:
+	room_light.power_out()
+	user_input_enabled = false
+	await get_tree().create_timer(.5).timeout
+	animation_player.play("Death")
+
+
+func reload() -> void:
+	get_tree().reload_current_scene()

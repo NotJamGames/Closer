@@ -2,11 +2,19 @@ AUDIO RESOURCES
 All audio edited using Renoise and/or Reaper
 
 Ambiences
+ambience_2.ogg
+Derived from:
+https://freesound.org/people/martian/sounds/561210/
+https://freesound.org/people/Zeraora/sounds/707375/
+https://freesound.org/people/Fission9/sounds/693863/
+
 background_hum.ogg
 Derived from:
 https://freesound.org/people/FOSSarts/sounds/761928/
 https://freesound.org/people/Clusman/sounds/543057/
 50hz hum cycle (Dexed)
+
+ambience_3.ogg
 
 SFX Resources
 action_failure.wav - Not Jam
@@ -27,6 +35,10 @@ click_5.wav
 Derived from:
 https://freesound.org/people/ProductionNow/sounds/321491/
 
+crack.wav
+Derived from:
+https://freesound.org/people/nightmareszn/sounds/464766/
+
 crt_startup.wav
 Derived from:
 https://freesound.org/people/corkob/sounds/415594/
@@ -35,6 +47,10 @@ flip_heads.wav - Not Jam
 flip_start.wav - Not Jam
 flip_tails.wav - Not Jam
 Made with Soraboy VST
+
+footsteps_running.wav
+Derived from:
+https://freesound.org/people/florianreichelt/sounds/459965/
 
 keystroke_1.wav
 keystroke_1.wav
@@ -51,6 +67,10 @@ All derived from https://freesound.org/people/frosthardr/sounds/553455/
 
 lose_jingle.wav - Not Jam
 Made with Soraboy VST
+
+thud.wav
+Derived from:
+https://freesound.org/people/Bird_man/sounds/275160/
 
 Dexed can be found here:
 https://asb2m10.github.io/dexed/
