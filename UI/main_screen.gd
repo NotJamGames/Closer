@@ -20,6 +20,7 @@ var results_remaining : int = 4
 
 @export var action_failure_sfx : AudioStreamPlayer
 @export var win_jingle_sfx : AudioStreamPlayer
+@export var lose_jingle_sfx : AudioStreamPlayer
 
 var coinless_run_permitted : bool = false
 
@@ -149,7 +150,15 @@ func evaluate_result() -> void:
 					["win_string_%s" % randi_range(0, Strings.win_strings)]
 				)
 	else:
-		print("You lose")
+		lose_jingle_sfx.play()
+		Global.closeness += 1
+		var timer : SceneTreeTimer = get_tree().create_timer(.8)
+		await timer.timeout
+		next_screen_requested.emit\
+				(
+					"dialogue_screen", 
+					["lose_string_%s_a" % Global.closeness]
+				)
 
 
 func flip_coins(coin_index : int = 0) -> void:

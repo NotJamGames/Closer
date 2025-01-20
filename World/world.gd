@@ -48,6 +48,12 @@ func fade_in(duration : float) -> void:
 			.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE)
 
 
+func fade_out() -> void:
+	var tween : Tween = get_tree().create_tween()
+	tween.tween_property(blackout, "color:a", 1.0, 2.2)\
+			.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
+
+
 func trigger_event(event_ref : String) -> void:
 	call(event_ref)
 
@@ -57,4 +63,14 @@ func set_user_input_enabled(new_state : bool) -> void:
 
 
 func power_out() -> void:
+	room_light.power_out()
+
+
+func lights_down_a() -> void:
+	room_light.spot_angle = 33.0
+	room_light.power_out()
+
+
+func lights_down_b() -> void:
+	room_light.light_color = Color(1.0, .0, .0, 1.0)
 	room_light.power_out()

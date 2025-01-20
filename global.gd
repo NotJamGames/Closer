@@ -6,6 +6,7 @@ var mouse_sensitivity : float = 1.0
 var current_round : int = 1
 var money : int = 4
 var heads : int = 1
+var closeness : int = 0
 
 
 var odds : float = .5
@@ -20,6 +21,8 @@ func new_game() -> void:
 	current_round = 1
 	money = 4
 	heads = 1
+
+	closeness = 0
 
 	Powerups.possible_powerups.clear()
 	Powerups.possible_powerups = Powerups.base_powerups.duplicate()
